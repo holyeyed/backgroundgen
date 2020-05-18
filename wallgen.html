@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body data-rsssl=1>
+	<h1>Random Wallpaper by Holyeyed</h1>
+    <canvas id="myCanvas" width="1280" height="720" style="display:none;"  ></canvas>
+    <img id="canvasImg" alt="Right click to save me!" onclick=location.reload()>
+    <script>
+    var canvas = document.getElementById('myCanvas');
+	var context = canvas.getContext('2d');
+	context.fillStyle=getRandomColor();
+	context.fillRect(0,0,canvas.width,canvas.height);
+      // draw cloud
+		cloud(10);
+//draw triangle
+		//triangle();
+      //context.strokeStyle = '#0000ff';
+      //context.stroke();
+
+      // save canvas image as data url (png format by default)
+      var dataURL = canvas.toDataURL();
+
+      // set canvasImg image src to dataURL
+      // so it can be saved as an image
+      document.getElementById('canvasImg').src = dataURL;
+	  
+	  function rdom(x){
+	  return Math.floor(Math.random() * x);}
+	  
+function getscale(noc){
+var cl256=["#000000","#00005F","#000087","#0000AF","#0000D7","#0000FF","#005F00","#005F5F","#005F87","#005FAF","#005FD7","#005FFF","#008700","#00875F","#008787","#0087AF","#0087D7","#0087FF","#00AF00","#00AF5F","#00AF87","#00AFAF","#00AFD7","#00AFFF","#00D700","#00D75F","#00D787","#00D7AF","#00D7D7","#00D7FF","#00FF00","#00FF5F","#00FF87","#00FFAF","#00FFD7","#00FFFF","#5F0000","#5F005F","#5F0087","#5F00AF","#5F00D7","#5F00FF","#5F5F00","#5F5F5F","#5F5F87","#5F5FAF","#5F5FD7","#5F5FFF","#5F8700","#5F875F","#5F8787","#5F87AF","#5F87D7","#5F87FF","#5FAF00","#5FAF5F","#5FAF87","#5FAFAF","#5FAFD7","#5FAFFF","#5FD700","#5FD75F","#5FD787","#5FD7AF","#5FD7D7","#5FD7FF","#5FFF00","#5FFF5F","#5FFF87","#5FFFAF","#5FFFD7","#5FFFFF","#870000","#87005F","#870087","#8700AF","#8700D7","#8700FF","#875F00","#875F5F","#875F87","#875FAF","#875FD7","#875FFF","#878700","#87875F","#878787","#8787AF","#8787D7","#8787FF","#87AF00","#87AF5F","#87AF87","#87AFAF","#87AFD7","#87AFFF","#87D700","#87D75F","#87D787","#87D7AF","#87D7D7","#87D7FF","#87FF00","#87FF5F","#87FF87","#87FFAF","#87FFD7","#87FFFF","#AF0000","#AF005F","#AF0087","#AF00AF","#AF00D7","#AF00FF","#AF5F00","#AF5F5F","#AF5F87","#AF5FAF","#AF5FD7","#AF5FFF","#AF8700","#AF875F","#AF8787","#AF87AF","#AF87D7","#AF87FF","#AFAF00","#AFAF5F","#AFAF87","#AFAFAF","#AFAFD7","#AFAFFF","#AFD700","#AFD75F","#AFD787","#AFD7AF","#AFD7D7","#AFD7FF","#AFFF00","#AFFF5F","#AFFF87","#AFFFAF","#AFFFD7","#AFFFFF","#D70000","#D7005F","#D70087","#D700AF","#D700D7","#D700FF","#D75F00","#D75F5F","#D75F87","#D75FAF","#D75FD7","#D75FFF","#D78700","#D7875F","#D78787","#D787AF","#D787D7","#D787FF","#D7AF00","#D7AF5F","#D7AF87","#D7AFAF","#D7AFD7","#D7AFFF","#D7D700","#D7D75F","#D7D787","#D7D7AF","#D7D7D7","#D7D7FF","#D7FF00","#D7FF5F","#D7FF87","#D7FFAF","#D7FFD7","#D7FFFF","#FF0000","#FF005F","#FF0087","#FF00AF","#FF00D7","#FF00FF","#FF5F00","#FF5F5F","#FF5F87","#FF5FAF","#FF5FD7","#FF5FFF","#FF8700","#FF875F","#FF8787","#FF87AF","#FF87D7","#FF87FF","#FFAF00","#FFAF5F","#FFAF87","#FFAFAF","#FFAFD7","#FFAFFF","#FFD700","#FFD75F","#FFD787","#FFD7AF","#FFD7D7","#FFD7FF","#FFFF00","#FFFF5F","#FFFF87","#FFFFAF","#FFFFD7","#FFFFFF"];
+var ic=rdom(cl256.length);
+var rt=[];
+for(i=0;i<noc;i++){
+rt[i]=cl256[(ic+i)%cl256.length];
+}
+return rt;
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+	  
+function getRandomColorRGB() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+	  
+function cloud(nos){
+var cl=getscale(nos);
+for(i=0;i<nos;i++){
+var x=rdom(canvas.width);
+var y=rdom(canvas.height);
+      context.beginPath();
+		context.arc(x,y,rdom(canvas.width),0,2*Math.PI,false);
+      context.closePath();
+      var mode=rdom(2);
+	  if (mode==0){
+	  context.lineWidth = rdom(20);
+	  context.strokeStyle=cl[i];
+	  context.stroke();
+	  }else{      
+	  context.fillStyle = cl[i];
+      context.fill();}
+}
+}
+
+function clscale(noc){
+var rgb=[rdom(256),rdom(256),rdom(256)];
+var ic=rdom(3);
+var rt=[];
+var li=256/noc;
+for(i=0;i<noc;i++){
+rgb[ic]=(rgb[ic]+li)%256;
+rt[i]="rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
+}
+return rt;
+}
+
+function triangle(){
+var w=canvas.width;
+var h=canvas.height;
+var posw=(7+rdom(4));
+var wd=w/posw;
+var posh=(7+rdom(4));
+var hd=h/posh;
+var base=new Array(posh);
+var cl=clscale(posw*2);
+for(i=0;i<posh+2;i++){
+base[i]=[0,i*wd+rdom(wd)];
+}
+var lpos=[0,0];
+for(j=0;j<posw+1;j++){
+for (i=0;i<posh+1;i++){
+context.beginPath();
+if(i==0){
+lpos[0]=j*wd+rdom(wd);
+lpos[1]=-hd+rdom(hd);
+}
+var mx=j*wd+rdom(wd);
+var my=(i+1)*hd+rdom(hd);
+var cl1=cl[i+j*2];
+var cl2=cl[i+j*2+1]
+if(i%2==0){
+context.moveTo(lpos[0],lpos[1]);
+context.lineTo(base[i][0],base[i][1]);
+context.lineTo(mx,my);
+context.lineTo(lpos[0],lpos[1]);
+context.lineWidth=1;
+context.strokeStyle=cl1;
+context.stroke();
+context.fillStyle=cl1;
+context.fill();
+context.beginPath();
+context.moveTo(mx,my);
+context.lineTo(base[i][0],base[i][1]);
+context.lineTo(base[i+1][0],base[i+1][1]);
+context.lineTo(mx,my);
+context.lineWidth=1;
+context.strokeStyle=cl2;
+context.stroke();
+context.fillStyle=cl2;
+context.fill();
+}else{
+context.moveTo(lpos[0],lpos[1]);
+context.lineTo(base[i][0],base[i][1]);
+context.lineTo(base[i+1][0],base[i+1][1]);
+context.lineTo(lpos[0],lpos[1]);
+//context.lineWidth=5;
+context.lineWidth=1;
+context.strokeStyle=cl1;
+context.stroke();
+context.fillStyle=cl1;
+context.fill();
+context.beginPath();
+context.moveTo(lpos[0],lpos[1]);
+context.lineTo(base[i+1][0],base[i+1][1]);
+context.lineTo(mx,my);
+context.lineTo(lpos[0],lpos[1]);
+context.lineWidth=1;
+context.strokeStyle=cl2;
+context.stroke();
+context.fillStyle=cl2;
+context.fill();
+}
+base[i][0]=lpos[0];
+base[i][1]=lpos[1];
+if(i==posh-1){
+base[i+1][0]=mx;
+base[i+1][1]=my;}
+lpos[0]=mx;
+lpos[1]=my;
+}
+}
+
+}
+    </script>
+  </body>
+</html>      
