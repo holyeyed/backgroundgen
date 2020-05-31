@@ -10,7 +10,7 @@
   </head>
   <body data-rsssl=1>
 	<h1>Random Wallpaper by Holyeyed</h1>
-    <canvas id="myCanvas" width="640" height="480" style="display:none;"  ></canvas>
+    <canvas id="myCanvas" width="1028" height="768" style="display:none;"  ></canvas>
     <img id="canvasImg" alt="Right click to save me!" onclick=location.reload()>
     <script>
     var canvas = document.getElementById('myCanvas');
@@ -75,7 +75,7 @@ var rt=[];
 var li=256/noc;
 for(i=0;i<noc;i++){
 rgb[ic]=(rgb[ic]+li)%256;
-rt[i]="rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
+rt[i]="rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+","+Math.random()+")";
 }
 return rt;
 }
