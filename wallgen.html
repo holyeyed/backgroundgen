@@ -64,7 +64,7 @@ function getRandomColorRGB() {
 
 	  
 function cloud(nos){
-var cl=getscale(nos);
+var cl=clscale(nos);
 for(i=0;i<nos;i++){
 var x=rdom(canvas.width);
 var y=rdom(canvas.height);
@@ -89,7 +89,7 @@ var rt=[];
 var li=256/noc;
 for(i=0;i<noc;i++){
 rgb[ic]=(rgb[ic]+li)%256;
-rt[i]="rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
+rt[i]="rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+","+Math.random()+")";
 }
 return rt;
 }
